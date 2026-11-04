@@ -9,6 +9,20 @@ let formData = {
     wa: ''
 };
 
+// Enable the native date picker for Tanggal Lahir.
+const tanggalLahirInput = document.getElementById('form-tanggal-lahir');
+tanggalLahirInput.readOnly = false;
+tanggalLahirInput.addEventListener('click', () => {
+    if (typeof tanggalLahirInput.showPicker === 'function') {
+        try {
+            tanggalLahirInput.showPicker();
+        } catch (error) {
+            // Some browsers only allow showPicker in specific user-activation contexts.
+            // The input remains editable and its native picker can still be opened normally.
+        }
+    }
+});
+
 // Mobile Menu Toggle
 document.getElementById('mobile-menu-btn').addEventListener('click', () => {
     const menu = document.getElementById('mobile-menu');
