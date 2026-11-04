@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSB SD Smart Spark Academy - Pendaftaran Siswa Baru</title>
+    <!-- Tailwind configuration must load before the CDN. -->
+    <script src="js/tailwind.config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Toast Notification System -->
+    <div id="toast-container" class="fixed top-20 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-teal flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight text-slate-900 block leading-none">SMART SPARK</span>
+                    <span class="text-xs font-semibold text-accent-teal uppercase tracking-widest">Islamic & Global SD</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-600">
+                <a href="#hero" class="hover:text-brand-600 transition-colors">Beranda</a>
+                <a href="#keunggulan" class="hover:text-brand-600 transition-colors">Keunggulan</a>
+                <a href="#fasilitas" class="hover:text-brand-600 transition-colors">Fasilitas</a>
+                <a href="#alur-psb" class="hover:text-brand-600 transition-colors">Alur PSB</a>
+                <a href="#kalkulator" class="hover:text-brand-600 transition-colors">Simulasi Biaya</a>
+                <a href="#medsos" class="hover:text-brand-600 transition-colors">Medsos & Galeri</a>
+            </nav>
+
+            <!-- CTA Right -->
+            <div class="flex items-center gap-3">
+                <a href="#alur-psb" data-action="switch-step" data-step="1" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-500/20 transition-all hover:shadow-lg">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>Daftar PSB Online</span>
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20SD%20Smart%20Spark,%20saya%20ingin%20tanya%20informasi%20PSB" target="_blank" class="p-2.5 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors flex items-center justify-center" title="Chat WhatsApp CS">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Beranda</a>
+            <a href="#keunggulan" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Keunggulan</a>
+            <a href="#fasilitas" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Fasilitas</a>
+            <a href="#alur-psb" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Alur PSB</a>
+            <a href="#kalkulator" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Simulasi Biaya</a>
+            <a href="#medsos" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Medsos & Galeri</a>
+            <a href="#alur-psb" data-action="switch-step" data-step="1" class="block text-center py-3 rounded-xl bg-brand-600 text-white font-semibold shadow">Daftar PSB Sekarang</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -left-24 w-80 h-80 bg-accent-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs sm:text-sm font-bold tracking-wide uppercase">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Penerimaan Siswa Baru (PSB) TA 2027/2028 Duka Buka
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none sm:leading-tight">
+                        Membentuk Generasi <span class="gradient-text">Rabbani, Cerdas & Berkarakter Global</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        SD Smart Spark Academy menggabungkan Kurikulum Merdeka, Tahfidz Al-Qur'an, Pembelajaran Bilingual (English-Arabic), serta STEAM Technology untuk menyiapkan putra-putri Anda menjadi pemimpin masa depan.
+                    </p>
+
+                    <!-- CTA Group -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#alur-psb" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-base shadow-lg shadow-brand-500/30 hover:scale-105 transition-all text-center flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Daftar & Unduh Formulir</span>
+                        </a>
+                        <a href="#virtual-tour" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-base shadow-sm hover:border-slate-300 transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-play text-accent-coral text-xl"></i>
+                            <span>Tur Sekolah 360°</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlights Badge -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl font-extrabold text-slate-900">100%</div>
+                            <div class="text-xs text-slate-500">Akreditasi A Unggul</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-slate-900">3 Juz+</div>
+                            <div class="text-xs text-slate-500">Target Tahfidz SD</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-slate-900">15:1</div>
+                            <div class="text-xs text-slate-500">Rasio Guru & Siswa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Column -->
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <!-- Decorative Frame -->
+                        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-brand-500 to-accent-teal opacity-30 blur-lg"></div>
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-slate-100">
+                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="Siswa SD Smart Spark" class="w-full h-80 sm:h-96 object-cover">
+                            
+                            <!-- Floating Card Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 glass-card p-4 rounded-2xl shadow-xl flex items-center justify-between border border-white/60">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg shadow-md">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-slate-800">Kuota Terbatas T.A 2027</h4>
+                                        <p class="text-[11px] text-slate-500">Sisa Kuota: <span class="font-bold text-accent-coral">18 Kursi</span> (Gelombang 1)</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-lg text-[10px] font-bold uppercase">Gelombang I</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM UNGGULAN -->
+    <section id="keunggulan" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Program Kurikulum Terpadu</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">Mengapa Memilih SD Smart Spark?</p>
+                <p class="text-slate-600 mt-3 text-base">Kami memadukan kecerdasan intelektual, emosional, dan spiritual secara seimbang dengan metodologi pembelajaran abad 21.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book-quran"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Tahfidz & Qur'anic</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Target hafalan minimal 3 Juz Al-Qur'an (Juz 30, 29, 1) dengan tajwid standar Ummi & pembiasaan adab Islami harian.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Bilingual Habituation</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pengantar Bahasa Inggris & Bahasa Arab dalam percakapan sehari-hari serta kurikulum Cambridge Primary English.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">STEAM & Robotics</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pembelajaran berbasis proyek Science, Technology, Engineering, Art & Math serta dasar Coding & Robotika untuk anak.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Character Building</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pembentukan 7 Karakter Utama: Jujur, Mandiri, Disiplin, Tanggung Jawab, Empati, Leadership, dan Ramah Lingkungan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FASILITAS UNGGULAN & VIRTUAL TOUR -->
+    <section id="fasilitas" class="py-16 bg-slate-100/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Fasilitas Modern</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">Lingkungan Belajar Nyaman & Aman</p>
+                </div>
+                <div class="text-sm text-slate-600 max-w-md">
+                    Dilengkapi sarana prasarana standar internasional untuk mendukung aktivitas akademik dan minat bakat anak secara holistik.
+                </div>
+            </div>
+
+            <!-- Facilities Grid Gallery -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Facility 1 -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-md bg-white">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Ruang Kelas Ber-AC" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-5 flex flex-col justify-end text-white">
+                        <span class="text-xs font-bold text-accent-teal uppercase">Smart Classroom</span>
+                        <h4 class="text-lg font-bold">Ruang Kelas Ber-AC & Interactive Projector</h4>
+                    </div>
+                </div>
+
+                <!-- Facility 2 -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-md bg-white">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="Lab Komputer & Coding" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-5 flex flex-col justify-end text-white">
+                        <span class="text-xs font-bold text-amber-400 uppercase">Tech Hub</span>
+                        <h4 class="text-lg font-bold">Lab Komputer & Digital Learning Studio</h4>
+                    </div>
+                </div>
+
+                <!-- Facility 3 -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-md bg-white">
+                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80" alt="Kolam Renang Siswa" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-5 flex flex-col justify-end text-white">
+                        <span class="text-xs font-bold text-blue-400 uppercase">Sports & Wellness</span>
+                        <h4 class="text-lg font-bold">Kolam Renang Khusus Anak & Lapangan Olahraga</h4>
+                    </div>
+                </div>
+
+                <!-- Facility 4 -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-md bg-white">
+                    <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80" alt="Masjid Sekolah" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-5 flex flex-col justify-end text-white">
+                        <span class="text-xs font-bold text-emerald-400 uppercase">Ibadah & Spiritual</span>
+                        <h4 class="text-lg font-bold">Masjid Utama Al-Hidayah SD Smart Spark</h4>
+                    </div>
+                </div>
+
+                <!-- Facility 5 -->
+                <div class="relative rounded-2xl overflow-hidden group shadow-md bg-white">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" alt="Perpustakaan Digital" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent p-5 flex flex-col justify-end text-white">
+                        <span class="text-xs font-bold text-purple-400 uppercase">Literasi</span>
+                        <h4 class="text-lg font-bold">Perpustakaan & Reading Corner Interaktif</h4>
+                    </div>
+                </div>
+
+                <!-- Facility 6 / Video Tour Preview -->
+                <div id="virtual-tour" data-action="open-video" class="relative rounded-2xl overflow-hidden group shadow-md bg-slate-900 flex items-center justify-center cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Video Tour" class="w-full h-56 object-cover opacity-50 group-hover:opacity-40 transition-opacity">
+                    <div class="absolute text-center text-white p-4">
+                        <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-2xl mx-auto mb-2 border border-white/40 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                        <span class="text-xs uppercase tracking-wider font-bold text-amber-300">Video Showcase</span>
+                        <h4 class="text-base font-bold">Tonton Tur Virtual Sekolah (2 Menit)</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM ALUR PSB INTERAKTIF (MODUL TAHAPAN PSB CALON WALI MURID) -->
+    <section id="alur-psb" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 text-xs font-bold uppercase tracking-widest">Sistem Pendaftaran Digital</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Alur & Portal Pendaftaran PSB</h2>
+                <p class="text-slate-600 mt-3 text-base">Ikuti 5 tahapan resmi penerimaan siswa baru di bawah ini. Pengisian data formulir akan aktif secara otomatis setelah pembayaran biaya formulir terverifikasi.</p>
+            </div>
+
+            <!-- STEPPER TRACKER (STAGES 1 to 5) -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between max-w-4xl mx-auto relative px-2">
+                    <!-- Line behind steps -->
+                    <div class="absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 z-0"></div>
+                    <div id="stepper-progress-line" class="absolute top-1/2 left-0 h-1 bg-brand-600 -translate-y-1/2 z-0 transition-all duration-500"></div>
+
+                    <!-- Step 1 Button -->
+                    <button data-action="switch-step" data-step="1" id="step-btn-1" class="relative z-10 flex flex-col items-center group focus:outline-none">
+                        <div class="step-icon w-12 h-12 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center ring-4 ring-white shadow-lg transition-all">
+                            1
+                        </div>
+                        <span class="text-xs font-bold text-slate-800 mt-2 hidden sm:block">Beli & Download Formulir</span>
+                    </button>
+
+                    <!-- Step 2 Button -->
+                    <button data-action="switch-step" data-step="2" id="step-btn-2" class="relative z-10 flex flex-col items-center group focus:outline-none">
+                        <div class="step-icon w-12 h-12 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center ring-4 ring-white shadow transition-all">
+                            2
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 mt-2 hidden sm:block">Isi Data Biodata</span>
+                    </button>
+
+                    <!-- Step 3 Button -->
+                    <button data-action="switch-step" data-step="3" id="step-btn-3" class="relative z-10 flex flex-col items-center group focus:outline-none">
+                        <div class="step-icon w-12 h-12 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center ring-4 ring-white shadow transition-all">
+                            3
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 mt-2 hidden sm:block">Observasi & Wawancara</span>
+                    </button>
+
+                    <!-- Step 4 Button -->
+                    <button data-action="switch-step" data-step="4" id="step-btn-4" class="relative z-10 flex flex-col items-center group focus:outline-none">
+                        <div class="step-icon w-12 h-12 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center ring-4 ring-white shadow transition-all">
+                            4
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 mt-2 hidden sm:block">Hasil Pengumuman</span>
+                    </button>
+
+                    <!-- Step 5 Button -->
+                    <button data-action="switch-step" data-step="5" id="step-btn-5" class="relative z-10 flex flex-col items-center group focus:outline-none">
+                        <div class="step-icon w-12 h-12 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center ring-4 ring-white shadow transition-all">
+                            5
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 mt-2 hidden sm:block">Daftar Ulang</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP CONTENT BOXES -->
+            <div class="max-w-4xl mx-auto bg-slate-50 rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-xl relative overflow-hidden">
+
+                <!-- STAGE 1: PEMBELIAN & PAYWALL FORMULIR -->
+                <div id="step-content-1" class="step-content space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
+                        <div>
+                            <span class="px-3 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-bold uppercase">Tahap 1 dari 5</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Pembelian & Unduh Formulir Pendaftaran</h3>
+                        </div>
+                        <div id="payment-status-badge" class="px-4 py-2 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Status: Belum Bayar</span>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Sesuai ketentuan pendaftaran, calon wali murid diwajibkan membeli formulir pendaftaran sebesar <span class="font-bold text-slate-900">Rp 150.000,-</span>. Setelah simulasi pembayaran berhasil, Anda dapat mengunduh berkas Formulir PDF dan langsung mengisi pendaftaran secara online.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                        <!-- Left Box: Paywall Trigger -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-3">
+                                    <i class="fa-solid fa-qrcode"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900">Simulasi Pembayaran Formulir</h4>
+                                <p class="text-xs text-slate-500 mt-1">Metode: QRIS (Gopay/OVO/ShopeePay) / Transfer Bank</p>
+                                <div class="mt-4 text-2xl font-extrabold text-brand-600">Rp 150.000</div>
+                            </div>
+                            <button id="pay-button" data-action="open-payment" class="mt-6 w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <span>Bayar Formulir Sekarang</span>
+                            </button>
+                        </div>
+
+                        <!-- Right Box: Download & Next Action (Locked Initially) -->
+                        <div id="download-box" class="bg-slate-100 p-6 rounded-2xl border border-slate-200 shadow-sm opacity-65 flex flex-col justify-between transition-all">
+                            <div>
+                                <div class="w-12 h-12 rounded-xl bg-slate-200 text-slate-500 flex items-center justify-center text-xl mb-3" id="dl-icon">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900">Download Berkas & Lanjut Form</h4>
+                                <p class="text-xs text-slate-500 mt-1" id="dl-desc">Terkuak otomatis setelah pembayaran Rp 150.000 dikonfirmasi.</p>
+                            </div>
+                            <div class="space-y-3 mt-6">
+                                <button id="btn-download-pdf" disabled data-action="download-form" class="w-full py-2.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm cursor-not-allowed transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>Download Formulir PDF</span>
+                                </button>
+                                <button id="btn-goto-step2" disabled data-action="switch-step" data-step="2" class="w-full py-2.5 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm cursor-not-allowed transition-all flex items-center justify-center gap-2">
+                                    <span>Lanjut Isi Form Online</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STAGE 2: FORMULIR ONLINE -->
+                <div id="step-content-2" class="step-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-200">
+                        <div>
+                            <span class="px-3 py-1 rounded-md bg-brand-100 text-brand-800 text-xs font-bold uppercase">Tahap 2 dari 5</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mt-1">Formulir Pendaftaran Calon Siswa</h3>
+                        </div>
+                    </div>
+
+                    <form id="psb-form" class="space-y-6">
+                        <!-- Data Siswa -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
+                            <h4 class="text-sm font-bold text-brand-600 uppercase tracking-wide border-b border-slate-100 pb-2"><i class="fa-solid fa-child mr-2"></i>Data Calon Siswa</h4>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap Siswa *</label>
+                                    <input type="text" required id="form-nama-siswa" placeholder="Contoh: Muhammad Rayhan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">NIK Siswa (Sesuai KK) *</label>
+                                    <input type="number" required placeholder="337401..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label for="form-tempat-lahir" class="block text-xs font-semibold text-slate-700 mb-1">Tempat Lahir *</label>
+                                    <input type="text" required id="form-tempat-lahir" placeholder="Contoh: Jakarta" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label for="form-tanggal-lahir" class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Lahir *</label>
+                                    <input type="date" required readonly id="form-tanggal-lahir" title="Pilih tanggal melalui kalender" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Jenis Kelamin *</label>
+                                    <select required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                        <option value="">-- Pilih Jenis Kelamin --</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Orang Tua / Wali -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
+                            <h4 class="text-sm font-bold text-brand-600 uppercase tracking-wide border-b border-slate-100 pb-2"><i class="fa-solid fa-users mr-2"></i>Data Orang Tua / Wali</h4>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Ayah / Ibu / Wali *</label>
+                                    <input type="text" required id="form-nama-ortu" placeholder="Contoh: Ahmad Subagyo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">No. WhatsApp Aktif *</label>
+                                    <input type="tel" required id="form-wa" placeholder="08123456789" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Rumah Lengkap *</label>
+                                    <textarea required rows="2" placeholder="Jl. Mawar No. 123, Kelurahan..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-2">
+                            <button type="button" data-action="switch-step" data-step="1" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 font-semibold text-sm hover:bg-slate-100">Kembali</button>
+                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md">Simpan & Jadwalkan Observasi <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- STAGE 3: OBSERVASI & WAWANCARA -->
+                <div id="step-content-3" class="step-content hidden space-y-6">
+                    <div class="pb-4 border-b border-slate-200">
+                        <span class="px-3 py-1 rounded-md bg-purple-100 text-purple-800 text-xs font-bold uppercase">Tahap 3 dari 5</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">Jadwal Observasi Siswa & Wawancara Ortu</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex items-center gap-4 text-emerald-600">
+                            <i class="fa-solid fa-circle-check text-3xl"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Formulir Terverifikasi!</h4>
+                                <p class="text-xs text-slate-500">Nomor Registrasi PSB: <span id="display-reg-no" class="font-mono font-bold text-brand-600">REG-2027-8891</span></p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-100 pt-4 space-y-3">
+                            <div class="flex justify-between text-sm py-1 border-b border-dashed border-slate-200">
+                                <span class="text-slate-500">Tanggal Observasi / Sit-In:</span>
+                                <span class="font-bold text-slate-800">Sabtu, 20 Maret 2027 (08.00 - 10.30 WIB)</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1 border-b border-dashed border-slate-200">
+                                <span class="text-slate-500">Lokasi:</span>
+                                <span class="font-bold text-slate-800">Gedung SD Smart Spark (Ruang Psikologi)</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1">
+                                <span class="text-slate-500">Agenda Siswa & Orang Tua:</span>
+                                <span class="font-bold text-slate-800">Tes Kematangan Motorik & Wawancara Komitmen</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs text-amber-900 flex gap-3">
+                            <i class="fa-solid fa-lightbulb text-amber-500 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>Catatan Penting:</strong> Harap hadir 15 menit sebelum jadwal dengan membawa Berkas Fotokopi KK, Akta Kelahiran, dan Pasfoto 3x4 (2 Lembar).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <button data-action="switch-step" data-step="2" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 font-semibold text-sm hover:bg-slate-100">Edit Form</button>
+                        <button data-action="simulate-pass" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md">Simulasi Selesai Observasi & Lihat Hasil <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- STAGE 4: PENGUMUMAN KELULUSAN -->
+                <div id="step-content-4" class="step-content hidden space-y-6">
+                    <div class="pb-4 border-b border-slate-200">
+                        <span class="px-3 py-1 rounded-md bg-emerald-100 text-emerald-800 text-xs font-bold uppercase">Tahap 4 dari 5</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">Pengumuman Hasil Seleksi PSB</h3>
+                    </div>
+
+                    <div id="status-kelulusan-box" class="bg-emerald-50 border-2 border-emerald-300 p-8 rounded-3xl text-center space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center text-3xl mx-auto shadow-lg shadow-emerald-500/30">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-emerald-900">SELAMAT! DITERIMA</h4>
+                        <p class="text-sm text-emerald-800 max-w-lg mx-auto">
+                            Berdasarkan hasil observasi dan wawancara, calon siswa <span id="display-nama-diterima" class="font-bold underline">Ananda Rayhan</span> dinyatakan <span class="font-bold">DITERIMA</span> sebagai Siswa Baru SD Smart Spark Academy T.A 2027/2028.
+                        </p>
+                    </div>
+
+                    <div class="flex justify-end pt-2">
+                        <button data-action="switch-step" data-step="5" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md">Lanjut Ke Daftar Ulang <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- STAGE 5: DAFTAR ULANG -->
+                <div id="step-content-5" class="step-content hidden space-y-6">
+                    <div class="pb-4 border-b border-slate-200">
+                        <span class="px-3 py-1 rounded-md bg-teal-100 text-teal-800 text-xs font-bold uppercase">Tahap 5 dari 5</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">Penyelesaian Daftar Ulang & Administrasi</h3>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <h4 class="font-bold text-slate-900 border-b pb-2">Rincian Penyelesaian Biaya Masuk</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between py-1 border-b border-slate-100">
+                                <span>Uang Pangkal / Gedung:</span>
+                                <span class="font-bold">Rp 8.500.000</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-100">
+                                <span>Seragam (5 Set) & Perlengkapan:</span>
+                                <span class="font-bold">Rp 1.450.000</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-100">
+                                <span>Buku Paket & Digital Learning License (1 Thn):</span>
+                                <span class="font-bold">Rp 1.200.000</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-100">
+                                <span>SPP Bulan Pertama (Juli 2027):</span>
+                                <span class="font-bold">Rp 750.000</span>
+                            </div>
+                            <div class="flex justify-between py-2 text-base font-extrabold text-brand-600 bg-brand-50 px-3 rounded-lg mt-2">
+                                <span>TOTAL DAFTAR ULANG:</span>
+                                <span>Rp 11.900.000</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20konfirmasi%20pembayaran%20Daftar%20Ulang%20PSB" target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm text-center shadow flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Konfirmasi Bayar Via WhatsApp CS</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KALKULATOR ETIMASI BIAYA PENDIDIKAN INTERAKTIF -->
+    <section id="kalkulator" class="py-16 bg-slate-100/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="px-3 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-bold uppercase">Transparansi Pembiayaan</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Kalkulator Simulasi Biaya Masuk & SPP</h2>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Hitung estimasi total investasi pendidikan putra-putri Anda di SD Smart Spark secara otomatis sesuai dengan program pilihan dan skema pembayaran.
+                    </p>
+                    <div class="p-4 bg-white rounded-2xl border border-slate-200 text-xs space-y-2 text-slate-600">
+                        <div class="flex items-center gap-2 font-bold text-slate-800">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>Dapatkan Diskon Gelombang 1 sebesar Rp 1.500.000</span>
+                        </div>
+                        <div class="flex items-center gap-2 font-bold text-slate-800">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>Bisa Diangsur 3x Pembayaran selama 6 Bulan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-lg">
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Gelombang Pendaftaran</label>
+                            <select id="calc-gelombang" data-action="calculate-cost" class="w-full p-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                <option value="1">Gelombang 1 (Diskon Rp 1,5 Juta)</option>
+                                <option value="2">Gelombang 2 (Diskon Rp 750 Ribu)</option>
+                                <option value="3">Gelombang 3 (Normal)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Program Layanan Tambahan</label>
+                            <select id="calc-program" data-action="calculate-cost" class="w-full p-3 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                <option value="reguler">Kelas Reguler Bilingual</option>
+                                <option value="tahfidz">Kelas Khusus Tahfidz Intensive (+Rp 300rb SPP)</option>
+                                <option value="fullday">Full Day Care & Extra Club (+Rp 500rb SPP)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Breakdown Box -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Uang Pangkal / Masuk Netto:</span>
+                            <span id="calc-uang-pangkal" class="font-bold text-slate-900">Rp 7.000.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Seragam & Perlengkapan:</span>
+                            <span class="font-bold text-slate-900">Rp 1.450.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Buku & Modul Digital (1 Thn):</span>
+                            <span class="font-bold text-slate-900">Rp 1.200.000</span>
+                        </div>
+                        <div class="flex justify-between pt-2 border-t border-slate-200">
+                            <span class="text-slate-600">Estimasi SPP Bulanan:</span>
+                            <span id="calc-spp" class="font-bold text-teal-600">Rp 750.000 / Bulan</span>
+                        </div>
+                        <div class="flex justify-between pt-3 border-t-2 border-slate-300 text-base font-extrabold text-brand-600">
+                            <span>Estimasi Total Pembayaran Pertama:</span>
+                            <span id="calc-total" class="text-xl">Rp 10.400.000</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRASI MEDSOS TERKINI & SHOWCASE (IG, TIKTOK, YOUTUBE) -->
+    <section id="medsos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-4 py-1.5 rounded-full bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-widest">Konektivitas Digital</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Ikuti Aktivitas Kami di Media Sosial</h2>
+                <p class="text-slate-600 mt-3 text-base">Pantau keseruan belajar, kreativitas siswa, dan info terkini PSB langsung melalui platform Instagram, TikTok, & YouTube resmi kami.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Instagram Card Widget Preview -->
+                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">@sd.smartspark</h4>
+                                <p class="text-[11px] text-slate-500">12.5k Followers • Instagram</p>
+                            </div>
+                        </div>
+                        <a href="https://instagram.com" target="_blank" class="px-3 py-1 bg-rose-500 text-white text-xs font-bold rounded-lg hover:bg-rose-600">Follow</a>
+                    </div>
+                    <!-- Mock Grid Feed IG -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=300&q=80" alt="IG Post 1" class="rounded-xl h-28 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=300&q=80" alt="IG Post 2" class="rounded-xl h-28 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=300&q=80" alt="IG Post 3" class="rounded-xl h-28 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=300&q=80" alt="IG Post 4" class="rounded-xl h-28 w-full object-cover">
+                    </div>
+                </div>
+
+                <!-- TikTok Video Showcase Widget Preview -->
+                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">@smartspark_official</h4>
+                                <p class="text-[11px] text-slate-500">45.2k Likes • TikTok Edu</p>
+                            </div>
+                        </div>
+                        <a href="https://tiktok.com" target="_blank" class="px-3 py-1 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800">Follow</a>
+                    </div>
+                    <!-- TikTok Video Simulation -->
+                    <div data-action="open-video" class="relative rounded-2xl overflow-hidden bg-slate-900 h-60 flex items-center justify-center group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-4 flex flex-col justify-between">
+                            <span class="self-end bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">VIRAL TIKTOK</span>
+                            <div class="text-white">
+                                <p class="text-xs font-bold">Keseruan Lomba STEAM & Coding Siswa Kelas 2 SD! 🚀</p>
+                                <span class="text-[10px] text-slate-300">🎵 Sound Original - Smart Spark Academy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YouTube Channel Showcase -->
+                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Smart Spark TV</h4>
+                                <p class="text-[11px] text-slate-500">8.4k Subs • Youtube</p>
+                            </div>
+                        </div>
+                        <a href="https://youtube.com" target="_blank" class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700">Subscribe</a>
+                    </div>
+                    <!-- Youtube Video Card -->
+                    <div data-action="open-video" class="relative rounded-2xl overflow-hidden bg-slate-900 h-60 flex items-center justify-center group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-60">
+                        <div class="absolute text-center text-white p-4">
+                            <i class="fa-solid fa-circle-play text-4xl text-red-500 mb-2 group-hover:scale-110 transition-transform block"></i>
+                            <h4 class="text-sm font-bold">Profil & Dokumentasi Wisuda Tahfidz 2026</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI WALI MURID & PRESTASI -->
+    <section class="py-16 bg-slate-100/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="px-4 py-1.5 rounded-full bg-teal-50 text-teal-600 text-xs font-bold uppercase tracking-widest">Kata Mereka</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Testimoni Wali Murid</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-400 gap-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">
+                        "Perkembangan hafalan Al-Qur'an dan Bahasa Inggris ananda Kenzo luar biasa pesat sejak masuk SD Smart Spark. Gurunya sangat telaten dan komunikatif!"
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-sm">DR</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Dr. Rian Hermawan</h4>
+                            <p class="text-[10px] text-slate-500">Orang Tua Siswa Kelas 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-400 gap-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">
+                        "Proses Pendaftaran PSB Online sangat praktis dan transparan. Pembayaran formulir mudah, langsung dapat jadwal observasi anak secara teratur."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-sm">SD</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Siti Dahlia, S.T.</h4>
+                            <p class="text-[10px] text-slate-500">Orang Tua Siswa Kelas 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-400 gap-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">
+                        "Anak saya sangat antusias tiap hari sekolah karena ada program STEAM dan Robotika. Sekolahnya bersih, ber-AC, dan keamanannya terjaga ketat."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 font-bold flex items-center justify-center text-sm">AP</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Agung Pratama</h4>
+                            <p class="text-[10px] text-slate-500">Orang Tua Siswa Kelas 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+            
+            <div class="md:col-span-1 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="font-extrabold text-lg tracking-tight">SD SMART SPARK</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Sekolah Dasar Unggulan Berbasis Islamic Values, Cambridge English & STEAM Education.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-sm text-white mb-4">Navigasi Cepat</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="#hero" class="hover:text-white">Beranda</a></li>
+                    <li><a href="#keunggulan" class="hover:text-white">Program Unggulan</a></li>
+                    <li><a href="#fasilitas" class="hover:text-white">Fasilitas Sekolah</a></li>
+                    <li><a href="#alur-psb" class="hover:text-white">Pendaftaran PSB</a></li>
+                    <li><a href="#kalkulator" class="hover:text-white">Kalkulator Biaya</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-sm text-white mb-4">Kontak Sekretariat PSB</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i>Jl. Cendekia Utama No. 88, Jakarta Selatan</li>
+                    <li><i class="fa-solid fa-phone mr-2 text-brand-500"></i>(021) 7890-1234</li>
+                    <li><i class="fa-brands fa-whatsapp mr-2 text-emerald-500"></i>+62 812-3456-7890</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-brand-500"></i>psb@smartspark.sch.id</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-sm text-white mb-4">Jam Layanan PSB</h4>
+                <p class="text-xs text-slate-400 mb-2">Senin - Jumat: 08.00 - 15.00 WIB</p>
+                <p class="text-xs text-slate-400 mb-4">Sabtu: 08.00 - 12.00 WIB</p>
+                <a href="#alur-psb" data-action="switch-step" data-step="1" class="inline-block px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold">
+                    Beli Formulir Online
+                </a>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2027 SD Smart Spark Academy. Sistem Pemasaran & PSB Digital Terpadu.
+        </div>
+    </footer>
+
+
+    <!-- MODAL SIMULASI PEMBAYARAN QRIS / PAYWALL -->
+    <div id="payment-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-md w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 relative animate-in fade-in zoom-in duration-200">
+            <button data-action="close-payment" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Simulasi Payment Gateway</span>
+                <h3 class="text-xl font-bold text-slate-900">Pembelian Formulir PSB</h3>
+                <p class="text-xs text-slate-500">Scan QRIS di bawah ini menggunakan e-wallet / m-banking Anda.</p>
+            </div>
+
+            <!-- Mock QRIS -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center space-y-3">
+                <div class="text-xs font-bold text-slate-700">QRIS NATIONAL - SD SMART SPARK</div>
+                <div class="bg-white p-4 inline-block rounded-xl shadow-inner border border-slate-200">
+                    <!-- SVG Mock QR Code -->
+                    <svg class="w-44 h-44 mx-auto" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" fill="white"/>
+                        <path d="M10 10H40V40H10V10ZM15 15V35H35V15H15Z" fill="black"/>
+                        <rect x="20" y="20" width="10" height="10" fill="black"/>
+                        <path d="M60 10H90V40H60V10ZM65 15V35H85V15H65Z" fill="black"/>
+                        <rect x="70" y="20" width="10" height="10" fill="black"/>
+                        <path d="M10 60H40V90H10V60ZM15 65V85H35V65H15Z" fill="black"/>
+                        <rect x="20" y="70" width="10" height="10" fill="black"/>
+                        <rect x="50" y="50" width="15" height="15" fill="black"/>
+                        <rect x="70" y="50" width="20" height="10" fill="black"/>
+                        <rect x="50" y="70" width="10" height="20" fill="black"/>
+                        <rect x="70" y="75" width="15" height="15" fill="black"/>
+                    </svg>
+                </div>
+                <div class="text-lg font-extrabold text-brand-600">Rp 150.000</div>
+                <div class="text-[11px] text-slate-400">Merchant: SD Smart Spark PSB Online</div>
+            </div>
+
+            <!-- Simulated Pay Button -->
+            <button data-action="confirm-payment" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Simulasikan Pembayaran Lunas</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MODAL VIDEO TOUR -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-black max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl relative">
+            <button data-action="close-video" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/20 text-white hover:bg-white/40 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="aspect-video bg-slate-900 flex flex-col items-center justify-center text-white p-6 text-center">
+                <i class="fa-solid fa-circle-play text-6xl text-brand-500 mb-4 animate-bounce"></i>
+                <h3 class="text-lg font-bold">Simulasi Video Tur Virtual SD Smart Spark</h3>
+                <p class="text-xs text-slate-400 mt-2">Menampilkan fasilitas kelas, lab komputer, perpustakaan, masjid, dan kegiatan siswa.</p>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
